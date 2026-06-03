@@ -1,0 +1,7 @@
+{
+    "dependencies": ["."],
+    "graphs": {
+        "question_query_agent": "./app/agents/xiaoou_agent.py:agent"
+    },
+    "env": ".env"
+}
