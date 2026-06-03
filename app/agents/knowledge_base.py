@@ -5,10 +5,10 @@
 """
 import os
 from langchain_community.document_loaders import DirectoryLoader, TextLoader, PyPDFLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS
 from langchain_openai import OpenAIEmbeddings
-from langchain.tools.retriever import create_retriever_tool
+from langchain_core.tools import create_retriever_tool
 
 
 # 全局缓存变量

@@ -8,11 +8,10 @@ import sqlite3
 from langchain_core.messages import HumanMessage, AIMessage, AIMessageChunk
 
 # 导入知识库管理模块
-from knowledge_base import setup_knowledge_base, get_knowledge_base_status
-
+import knowledge_base
 
 # 加载环境变量 - 使用绝对路径确保正确加载
-env_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), ".env")
+env_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "../.env")
 load_dotenv(dotenv_path=env_path)
 
 # 多模态模型
@@ -31,7 +30,7 @@ web_search = TavilySearch(
 
 # ==================== 知识库配置 ====================
 # 初始化知识库并创建检索工具（使用缓存机制，避免重复初始化）
-knowledge_db, retriever_tools = setup_knowledge_base()
+knowledge_db, retriever_tools = knowledge_base.setup_knowledge_base()
 
 # # 初始化checkpointer（可选）
 # db_path = os.path.join(os.path.dirname(__file__), "db", "agent_memory.db")
@@ -97,7 +96,7 @@ agent = create_agent(
 print("🚀 Linux运维专家智能体初始化完成")
 
 # 显示知识库状态
-status = get_knowledge_base_status()
+status = knowledge_base.get_knowledge_base_status()
 print(f"📚 知识库状态: {'已加载' if status['knowledge_db_loaded'] else '未配置'}")
 if status['knowledge_db_loaded']:
     print(f"📄 文档片段数: {status.get('document_count', 0)}")
